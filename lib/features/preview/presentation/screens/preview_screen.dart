@@ -7,6 +7,7 @@ import '../../../../core/constants/strings.dart';
 import '../../../../core/services/analytics_service.dart';
 import '../../../../features/ambigram/presentation/providers/ambigram_provider.dart';
 import '../widgets/action_button.dart';
+import '../widgets/ambigram_preview.dart';
 import '../widgets/preview_image.dart';
 
 /// Screen to preview and share generated ambigrams

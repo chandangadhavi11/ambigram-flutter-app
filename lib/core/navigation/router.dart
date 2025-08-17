@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
+import '../../features/preview/presentation/screens/ambigram_preview_demo.dart';
 import '../../features/preview/presentation/screens/preview_screen.dart';
 import '../../features/profile/presentation/screens/profile_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
@@ -31,6 +32,9 @@ class RouteNames {
 
   /// Profile screen route name
   static const String profile = 'profile';
+  
+  /// Ambigram preview demo route name
+  static const String previewDemo = 'previewDemo';
 }
 
 /// Route paths for the application
@@ -52,6 +56,9 @@ class RoutePaths {
 
   /// Profile screen route path
   static const String profile = '/profile';
+  
+  /// Ambigram preview demo route path
+  static const String previewDemo = '/preview-demo';
 }
 
 /// Builds the router configuration for the application
@@ -113,6 +120,11 @@ GoRouter buildRouter(AuthNotifier authNotifier) {
         path: RoutePaths.profile,
         name: RouteNames.profile,
         builder: (context, state) => const ProfileScreen(),
+      ),
+      GoRoute(
+        path: RoutePaths.previewDemo,
+        name: RouteNames.previewDemo,
+        builder: (context, state) => const AmbigramPreviewDemo(),
       ),
     ],
     errorBuilder: (context, state) => Scaffold(

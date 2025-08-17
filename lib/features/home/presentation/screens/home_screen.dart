@@ -262,6 +262,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     },
                   ),
+                  
+                  // Demo button
+                  const SizedBox(height: 16),
+                  OutlinedButton.icon(
+                    onPressed: () => context.go('/preview-demo'),
+                    icon: const Icon(Icons.science_outlined),
+                    label: const Text('Try Ambigram Preview Demo'),
+                  ),
                 ],
               ),
             ),
