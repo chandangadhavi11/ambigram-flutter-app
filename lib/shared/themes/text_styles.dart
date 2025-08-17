@@ -9,7 +9,7 @@ import '../../core/constants/fonts.dart';
 class TextStyles {
   /// Private constructor to prevent instantiation
   const TextStyles._();
-  
+
   /// Creates text styles for the light theme
   static TextTheme light() {
     return const TextTheme(
@@ -30,7 +30,7 @@ class TextStyles {
       labelSmall: AppFonts.labelSmall,
     );
   }
-  
+
   /// Creates text styles for the dark theme
   static TextTheme dark() {
     return TextTheme(

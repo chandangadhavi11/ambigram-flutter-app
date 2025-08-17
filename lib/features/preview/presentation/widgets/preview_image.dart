@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class PreviewImage extends StatelessWidget {
   /// URL of the image to display
   final String imageUrl;
-  
+
   /// Background color of the image (hex format)
   final String backgroundColor;
-  
+
   /// Default constructor
   const PreviewImage({
     super.key,

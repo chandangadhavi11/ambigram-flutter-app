@@ -8,10 +8,10 @@ import 'package:flutter/foundation.dart';
 class RewardedAdService {
   /// Singleton instance
   static final RewardedAdService _instance = RewardedAdService._internal();
-  
+
   /// Factory constructor to return the singleton instance
   factory RewardedAdService() => _instance;
-  
+
   /// Private constructor
   RewardedAdService._internal();
 
@@ -26,7 +26,7 @@ class RewardedAdService {
     // Just return true to simulate successful showing of an ad
     return true;
   }
-  
+
   /// Preloads an ad for later display
   Future<void> preloadRewardedAd() async {
     // No-op since ads are disabled

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class RegisterForm extends StatefulWidget {
   /// Function to call when register button is pressed
   final Function(String name, String email, String password) onRegister;
-  
+
   /// Whether the form is in a loading state
   final bool isLoading;
-  
+
   /// Default constructor
   const RegisterForm({
     super.key,
@@ -85,7 +85,7 @@ class _RegisterFormState extends State<RegisterForm> {
         );
         return;
       }
-      
+
       widget.onRegister(
         _nameController.text.trim(),
         _emailController.text.trim(),
@@ -116,7 +116,7 @@ class _RegisterFormState extends State<RegisterForm> {
               enabled: !widget.isLoading,
             ),
             const SizedBox(height: 16),
-            
+
             // Email field
             TextFormField(
               controller: _emailController,
@@ -131,7 +131,7 @@ class _RegisterFormState extends State<RegisterForm> {
               enabled: !widget.isLoading,
             ),
             const SizedBox(height: 16),
-            
+
             // Password field
             TextFormField(
               controller: _passwordController,
@@ -156,7 +156,7 @@ class _RegisterFormState extends State<RegisterForm> {
               enabled: !widget.isLoading,
             ),
             const SizedBox(height: 16),
-            
+
             // Confirm password field
             TextFormField(
               controller: _confirmPasswordController,
@@ -166,7 +166,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 prefixIcon: const Icon(Icons.lock),
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _obscureConfirmPassword ? Icons.visibility : Icons.visibility_off,
+                    _obscureConfirmPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off,
                   ),
                   onPressed: () {
                     setState(() {
@@ -181,7 +183,7 @@ class _RegisterFormState extends State<RegisterForm> {
               enabled: !widget.isLoading,
             ),
             const SizedBox(height: 16),
-            
+
             // Terms and conditions checkbox
             Row(
               children: [
@@ -210,7 +212,7 @@ class _RegisterFormState extends State<RegisterForm> {
               ],
             ),
             const SizedBox(height: 24),
-            
+
             // Register button
             ElevatedButton(
               onPressed: widget.isLoading ? null : _submitForm,

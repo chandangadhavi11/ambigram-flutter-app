@@ -7,11 +7,12 @@ import 'package:flutter/foundation.dart';
 /// A stub service for interstitial ads
 class InterstitialAdService {
   /// Singleton instance
-  static final InterstitialAdService _instance = InterstitialAdService._internal();
-  
+  static final InterstitialAdService _instance =
+      InterstitialAdService._internal();
+
   /// Factory constructor to return the singleton instance
   factory InterstitialAdService() => _instance;
-  
+
   /// Private constructor
   InterstitialAdService._internal();
 
@@ -25,7 +26,7 @@ class InterstitialAdService {
     // Just return true to simulate successful showing of an ad
     return true;
   }
-  
+
   /// Preloads an ad for later display
   Future<void> preloadInterstitialAd() async {
     // No-op since ads are disabled

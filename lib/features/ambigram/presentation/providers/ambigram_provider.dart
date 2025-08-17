@@ -14,25 +14,25 @@ class AmbigramProvider extends ChangeNotifier {
 
   /// The primary text to convert to ambigram
   String get text => _text;
-  
+
   /// The secondary text to convert to ambigram (optional)
   String? get secondaryText => _secondaryText;
-  
+
   /// The selected style ID for the ambigram
   String get styleId => _styleId;
-  
+
   /// The selected background color for the ambigram
   String get backgroundColor => _backgroundColor;
-  
+
   /// The URL of the generated ambigram image
   String? get ambigramImageUrl => _ambigramImageUrl;
-  
+
   /// The saved ambigram file
   File? get savedAmbigramFile => _savedAmbigramFile;
-  
+
   /// Whether an ambigram is being generated
   bool get isLoading => _isLoading;
-  
+
   /// Whether we are in preview mode
   bool get isPreview => _isPreview;
 
@@ -41,19 +41,19 @@ class AmbigramProvider extends ChangeNotifier {
     _text = value;
     notifyListeners();
   }
-  
+
   /// Sets the secondary text to convert to ambigram
   void setSecondaryText(String? value) {
     _secondaryText = value;
     notifyListeners();
   }
-  
+
   /// Sets the style ID for the ambigram
   void setStyleId(String value) {
     _styleId = value;
     notifyListeners();
   }
-  
+
   /// Sets the background color for the ambigram
   void setBackgroundColor(String value) {
     _backgroundColor = value;
@@ -87,7 +87,7 @@ class AmbigramProvider extends ChangeNotifier {
   /// Generates an ambigram from the given text
   Future<void> generateAmbigram() async {
     if (_text.isEmpty) return;
-    
+
     setLoading(true);
     try {
       // TODO: Implement API call to generate ambigram

@@ -62,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Notification settings
                   const Text(
                     'Notifications',
@@ -88,7 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Language settings
                   const Text(
                     'Language',
@@ -138,7 +138,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // About section
                   const Text(
                     'About',
@@ -154,7 +154,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       children: [
                         ListTile(
                           title: const Text('Privacy Policy'),
-                          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                          trailing:
+                              const Icon(Icons.arrow_forward_ios, size: 16),
                           onTap: () {
                             // Navigate to privacy policy
                           },
@@ -162,7 +163,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         const Divider(height: 1),
                         ListTile(
                           title: const Text('Terms of Service'),
-                          trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+                          trailing:
+                              const Icon(Icons.arrow_forward_ios, size: 16),
                           onTap: () {
                             // Navigate to terms of service
                           },
@@ -176,7 +178,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  
+
                   // Save button
                   Center(
                     child: ElevatedButton(

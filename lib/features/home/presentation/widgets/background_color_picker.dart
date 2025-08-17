@@ -5,7 +5,7 @@ import '../../../../core/services/firebase_remote_config_stub.dart';
 class BackgroundColorPicker extends StatelessWidget {
   /// Currently selected color (hex format)
   final String selectedColor;
-  
+
   /// Callback when a color is selected
   final ValueChanged<String> onColorSelected;
 
@@ -25,7 +25,7 @@ class BackgroundColorPicker extends StatelessWidget {
         children: _getColors().map((colorHex) {
           final color = _hexToColor(colorHex);
           final isSelected = colorHex == selectedColor;
-          
+
           return GestureDetector(
             onTap: () => onColorSelected(colorHex),
             child: Container(
@@ -36,8 +36,8 @@ class BackgroundColorPicker extends StatelessWidget {
                 color: color,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: isSelected 
-                      ? Theme.of(context).colorScheme.primary 
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
                       : Colors.grey.shade300,
                   width: isSelected ? 3 : 1,
                 ),
@@ -46,7 +46,8 @@ class BackgroundColorPicker extends StatelessWidget {
                   ? Center(
                       child: Icon(
                         Icons.check,
-                        color: _isDarkColor(color) ? Colors.white : Colors.black,
+                        color:
+                            _isDarkColor(color) ? Colors.white : Colors.black,
                       ),
                     )
                   : null,
@@ -69,7 +70,7 @@ class BackgroundColorPicker extends StatelessWidget {
     } catch (e) {
       // Ignore any remote config errors
     }
-    
+
     // Default colors if remote config fails
     return [
       '#FFFFFF', // White
@@ -89,7 +90,7 @@ class BackgroundColorPicker extends StatelessWidget {
     buffer.write(hexString.replaceFirst('#', ''));
     return Color(int.parse(buffer.toString(), radix: 16));
   }
-  
+
   /// Check if a color is dark (for contrast text)
   bool _isDarkColor(Color color) {
     return (color.red * 0.299 + color.green * 0.587 + color.blue * 0.114) < 128;

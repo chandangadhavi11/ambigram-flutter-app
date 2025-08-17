@@ -8,10 +8,10 @@ class SettingsProvider extends ChangeNotifier {
 
   /// The current theme mode
   ThemeMode get themeMode => _themeMode;
-  
+
   /// Whether notifications are enabled
   bool get notificationsEnabled => _notificationsEnabled;
-  
+
   /// The selected language code
   String get selectedLanguage => _selectedLanguage;
 
@@ -23,7 +23,8 @@ class SettingsProvider extends ChangeNotifier {
 
   /// Toggles the dark mode
   void toggleDarkMode() {
-    _themeMode = _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+    _themeMode =
+        _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
     notifyListeners();
   }
 

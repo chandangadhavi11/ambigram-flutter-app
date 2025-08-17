@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 class LoginForm extends StatefulWidget {
   /// Function to call when login button is pressed
   final Function(String email, String password) onLogin;
-  
+
   /// Whether the form is in a loading state
   final bool isLoading;
-  
+
   /// Default constructor
   const LoginForm({
     super.key,
@@ -83,7 +83,7 @@ class _LoginFormState extends State<LoginForm> {
               enabled: !widget.isLoading,
             ),
             const SizedBox(height: 16),
-            
+
             // Password field
             TextFormField(
               controller: _passwordController,
@@ -108,19 +108,21 @@ class _LoginFormState extends State<LoginForm> {
               enabled: !widget.isLoading,
             ),
             const SizedBox(height: 8),
-            
+
             // Forgot password button
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: widget.isLoading ? null : () {
-                  // TODO: Implement forgot password
-                },
+                onPressed: widget.isLoading
+                    ? null
+                    : () {
+                        // TODO: Implement forgot password
+                      },
                 child: const Text('Forgot Password?'),
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // Login button
             ElevatedButton(
               onPressed: widget.isLoading ? null : _submitForm,

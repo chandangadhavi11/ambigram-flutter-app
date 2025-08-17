@@ -5,7 +5,7 @@ import '../../../../core/services/firebase_remote_config_stub.dart';
 class StyleSelector extends StatelessWidget {
   /// Currently selected style ID
   final String selectedStyleId;
-  
+
   /// Callback when a style is selected
   final ValueChanged<String> onStyleSelected;
 
@@ -19,7 +19,7 @@ class StyleSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final styles = _getStyles();
-    
+
     return SizedBox(
       height: 120,
       child: ListView.builder(
@@ -28,7 +28,7 @@ class StyleSelector extends StatelessWidget {
         itemBuilder: (context, index) {
           final style = styles[index];
           final isSelected = style['id'] == selectedStyleId;
-          
+
           return GestureDetector(
             onTap: () => onStyleSelected(style['id'] as String),
             child: Container(
@@ -37,8 +37,8 @@ class StyleSelector extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: isSelected 
-                      ? Theme.of(context).colorScheme.primary 
+                  color: isSelected
+                      ? Theme.of(context).colorScheme.primary
                       : Colors.grey.shade300,
                   width: isSelected ? 3 : 1,
                 ),
@@ -58,11 +58,12 @@ class StyleSelector extends StatelessWidget {
                       child: Text(
                         'Aa',
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                          color:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          fontStyle: style['id'] == 'gothic' 
-                              ? FontStyle.italic 
+                          fontStyle: style['id'] == 'gothic'
+                              ? FontStyle.italic
                               : FontStyle.normal,
                         ),
                       ),
@@ -110,7 +111,7 @@ class StyleSelector extends StatelessWidget {
     } catch (e) {
       // Ignore any remote config errors
     }
-    
+
     // Default styles if remote config fails
     return [
       {

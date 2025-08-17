@@ -4,19 +4,19 @@ import 'package:flutter/material.dart';
 class ProfileMenuItem extends StatelessWidget {
   /// Icon to display
   final IconData icon;
-  
+
   /// Title of the menu item
   final String title;
-  
+
   /// Optional subtitle for the menu item
   final String? subtitle;
-  
+
   /// Callback when the menu item is tapped
   final VoidCallback? onTap;
-  
+
   /// Whether to show a divider below this item
   final bool showDivider;
-  
+
   /// Default constructor
   const ProfileMenuItem({
     super.key,

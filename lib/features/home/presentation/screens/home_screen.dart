@@ -57,11 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     // Set values in provider
-    final ambigramProvider = Provider.of<AmbigramProvider>(context, listen: false);
+    final ambigramProvider =
+        Provider.of<AmbigramProvider>(context, listen: false);
     ambigramProvider.setText(_primaryTextController.text.trim());
-    ambigramProvider.setSecondaryText(_showSecondaryInput 
-        ? _secondaryTextController.text.trim() 
-        : null);
+    ambigramProvider.setSecondaryText(
+        _showSecondaryInput ? _secondaryTextController.text.trim() : null);
     ambigramProvider.setStyleId(_selectedStyleId);
     ambigramProvider.setBackgroundColor(_selectedBackgroundColor);
 
@@ -78,13 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // Generate the ambigram
     await ambigramProvider.generateAmbigram();
-    
+
     // Log the event
     AnalyticsService.logAmbigramGenerated(
       primaryWord: _primaryTextController.text.trim(),
-      secondaryWord: _showSecondaryInput 
-          ? _secondaryTextController.text.trim() 
-          : null,
+      secondaryWord:
+          _showSecondaryInput ? _secondaryTextController.text.trim() : null,
       styleId: _selectedStyleId,
       backgroundColor: _selectedBackgroundColor,
     );
@@ -244,8 +243,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Consumer<AmbigramProvider>(
                     builder: (context, ambigramProvider, _) {
                       return ElevatedButton(
-                        onPressed:
-                            ambigramProvider.isLoading ? null : _generateAmbigram,
+                        onPressed: ambigramProvider.isLoading
+                            ? null
+                            : _generateAmbigram,
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 12),
                         ),

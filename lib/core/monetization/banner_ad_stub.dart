@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 class BannerAdWidget extends StatelessWidget {
   /// The ad unit ID for the banner ad (unused in stub)
   final String adUnitId;
-  
+
   /// Whether to show a loading indicator (unused in stub)
   final bool showLoadingIndicator;
-  
+
   /// The size of the banner ad (unused in stub)
   final Object? adSize;
-  
+
   /// Creates a new [BannerAdWidget]
   const BannerAdWidget({
     required this.adUnitId,

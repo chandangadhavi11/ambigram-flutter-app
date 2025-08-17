@@ -16,19 +16,19 @@ import '../../global/state/auth_notifier.dart';
 class RouteNames {
   /// Private constructor to prevent instantiation
   const RouteNames._();
-  
+
   /// Splash screen route name
   static const String splash = 'splash';
-  
+
   /// Auth screen route name
   static const String auth = 'auth';
-  
+
   /// Home screen route name
   static const String home = 'home';
-  
+
   /// Preview screen route name
   static const String preview = 'preview';
-  
+
   /// Profile screen route name
   static const String profile = 'profile';
 }
@@ -37,19 +37,19 @@ class RouteNames {
 class RoutePaths {
   /// Private constructor to prevent instantiation
   const RoutePaths._();
-  
+
   /// Splash screen route path
   static const String splash = '/';
-  
+
   /// Auth screen route path
   static const String auth = '/auth';
-  
+
   /// Home screen route path
   static const String home = '/home';
-  
+
   /// Preview screen route path
   static const String preview = '/preview';
-  
+
   /// Profile screen route path
   static const String profile = '/profile';
 }
@@ -60,36 +60,20 @@ GoRouter buildRouter(AuthNotifier authNotifier) {
     initialLocation: RoutePaths.splash,
     debugLogDiagnostics: true,
     redirect: (context, state) {
-      final bool isLoggedIn = authNotifier.isLoggedIn;
       final bool isInitialized = authNotifier.isInitialized;
       final bool isSplashRoute = state.matchedLocation == RoutePaths.splash;
-      final bool isAuthRoute = state.matchedLocation == RoutePaths.auth;
-      
+
       // Wait for initialization before any redirects
       if (!isInitialized) {
         return null;
       }
-      
-      // After initialization, redirect from splash
+
+      // After initialization, redirect from splash directly to home
       if (isSplashRoute && isInitialized) {
-        // If we don't require login or user is already logged in, go to home
-        if (!authNotifier.requireLogin || isLoggedIn) {
-          return RoutePaths.home;
-        }
-        // Otherwise, go to auth
-        return RoutePaths.auth;
-      }
-      
-      // If auth is required and user is not logged in, and not on auth screen, redirect to auth
-      if (authNotifier.requireLogin && !isLoggedIn && !isAuthRoute) {
-        return RoutePaths.auth;
-      }
-      
-      // If user is logged in and on auth screen, redirect to home
-      if (isLoggedIn && isAuthRoute) {
         return RoutePaths.home;
       }
-      
+
+      // No other redirects needed - authentication has been removed
       return null;
     },
     refreshListenable: authNotifier,
@@ -113,8 +97,9 @@ GoRouter buildRouter(AuthNotifier authNotifier) {
         path: RoutePaths.preview,
         name: RouteNames.preview,
         builder: (context, state) {
-          final Map<String, dynamic> params = state.extra as Map<String, dynamic>? ?? {};
-          
+          final Map<String, dynamic> params =
+              state.extra as Map<String, dynamic>? ?? {};
+
           return PreviewScreen(
             primaryWord: params['primaryWord'] as String? ?? '',
             secondaryWord: params['secondaryWord'] as String?,

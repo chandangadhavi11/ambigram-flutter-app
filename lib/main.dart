@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
-import 'core/monetization/ads_stub.dart';  // Use stub implementation
+import 'core/monetization/ads_stub.dart'; // Use stub implementation
 import 'core/navigation/router.dart';
 import 'core/services/analytics_service_stub.dart' as analytics_service;
 import 'core/services/firebase_core_stub.dart';
@@ -23,9 +23,9 @@ Future<void> _initializeServices() async {
       final remoteConfig = FirebaseRemoteConfig.instance;
       await remoteConfig.setConfigSettings(RemoteConfigSettings(
         fetchTimeout: const Duration(minutes: 1),
-        minimumFetchInterval: kDebugMode 
-          ? const Duration(minutes: 0) // Allow frequent fetches in debug mode
-          : const Duration(hours: 12), // Limit fetches in production
+        minimumFetchInterval: kDebugMode
+            ? const Duration(minutes: 0) // Allow frequent fetches in debug mode
+            : const Duration(hours: 12), // Limit fetches in production
       ));
       await remoteConfig.setDefaults({
         'min_build_version': 1,
@@ -38,13 +38,14 @@ Future<void> _initializeServices() async {
     }
 
     // Initialize Notifications
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = 
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
-    const AndroidInitializationSettings initializationSettingsAndroid = 
+    const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('app_icon');
-    final DarwinInitializationSettings initializationSettingsIOS = 
+    final DarwinInitializationSettings initializationSettingsIOS =
         DarwinInitializationSettings();
-    final InitializationSettings initializationSettings = InitializationSettings(
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
       android: initializationSettingsAndroid,
       iOS: initializationSettingsIOS,
     );
@@ -78,7 +79,7 @@ Future<void> main() async {
 
   // Initialize Mobile Ads SDK (using stub)
   await MobileAds.instance.initialize();
-  
+
   // Initialize other services
   await _initializeServices();
 
@@ -105,10 +106,11 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     _initializeApp();
   }
-  
+
   Future<void> _initializeApp() async {
     await _authNotifier.initialize();
     await _settingsProvider.loadSettings();
+    // Auth notifier is initialized but login is not required anymore
   }
 
   @override
@@ -116,14 +118,16 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<AuthNotifier>.value(value: _authNotifier),
-        ChangeNotifierProvider<SettingsProvider>.value(value: _settingsProvider),
-        ChangeNotifierProvider<AmbigramProvider>.value(value: _ambigramProvider),
+        ChangeNotifierProvider<SettingsProvider>.value(
+            value: _settingsProvider),
+        ChangeNotifierProvider<AmbigramProvider>.value(
+            value: _ambigramProvider),
       ],
       child: Consumer<SettingsProvider>(
         builder: (context, settingsProvider, _) {
           // Track app open event
           analytics_service.AnalyticsService.logAppOpen();
-          
+
           return MaterialApp.router(
             title: 'Ambigram Generator',
             debugShowCheckedModeBanner: false,

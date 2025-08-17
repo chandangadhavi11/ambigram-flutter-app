@@ -13,19 +13,19 @@ import '../widgets/preview_image.dart';
 class PreviewScreen extends StatefulWidget {
   /// Primary word for the ambigram (for direct navigation)
   final String? primaryWord;
-  
+
   /// Secondary word for the ambigram (for direct navigation)
   final String? secondaryWord;
-  
+
   /// Style ID for the ambigram (for direct navigation)
   final String? styleId;
-  
+
   /// Background color for the ambigram (for direct navigation)
   final String? backgroundColor;
-  
+
   /// SVG data for the ambigram (for direct navigation)
   final String? svgData;
-  
+
   /// Default constructor
   const PreviewScreen({
     super.key,
@@ -52,41 +52,44 @@ class _PreviewScreenState extends State<PreviewScreen> {
   }
 
   Future<void> _initialize() async {
-    final ambigramProvider = Provider.of<AmbigramProvider>(context, listen: false);
-    
+    final ambigramProvider =
+        Provider.of<AmbigramProvider>(context, listen: false);
+
     // If direct navigation with data, set the data in the provider
     if (widget.primaryWord != null && widget.primaryWord!.isNotEmpty) {
       ambigramProvider.setText(widget.primaryWord!);
       ambigramProvider.setSecondaryText(widget.secondaryWord);
       ambigramProvider.setStyleId(widget.styleId ?? 'classic');
       ambigramProvider.setBackgroundColor(widget.backgroundColor ?? '#FFFFFF');
-      
+
       // If SVG data provided directly, use it
       if (widget.svgData != null) {
-        ambigramProvider.setAmbigramImageUrl('data:image/svg+xml;base64,${widget.svgData}');
+        ambigramProvider
+            .setAmbigramImageUrl('data:image/svg+xml;base64,${widget.svgData}');
       }
     }
-    
+
     ambigramProvider.setPreviewMode(true);
   }
 
   Future<void> _saveAmbigram() async {
     if (_isSaving) return;
-    
+
     setState(() {
       _isSaving = true;
     });
-    
+
     try {
-      final ambigramProvider = Provider.of<AmbigramProvider>(context, listen: false);
+      final ambigramProvider =
+          Provider.of<AmbigramProvider>(context, listen: false);
       final success = await ambigramProvider.saveAmbigram();
-      
+
       if (success) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Ambigram saved to gallery')),
           );
-          
+
           AnalyticsService.logAmbigramShared(
             action: 'save',
             primaryWord: ambigramProvider.text,
@@ -115,15 +118,16 @@ class _PreviewScreenState extends State<PreviewScreen> {
 
   Future<void> _shareAmbigram() async {
     if (_isSharing) return;
-    
+
     setState(() {
       _isSharing = true;
     });
-    
+
     try {
-      final ambigramProvider = Provider.of<AmbigramProvider>(context, listen: false);
+      final ambigramProvider =
+          Provider.of<AmbigramProvider>(context, listen: false);
       final success = await ambigramProvider.shareAmbigram();
-      
+
       if (success) {
         AnalyticsService.logAmbigramShared(
           action: 'share',
@@ -151,7 +155,8 @@ class _PreviewScreenState extends State<PreviewScreen> {
   }
 
   void _createNew() {
-    final ambigramProvider = Provider.of<AmbigramProvider>(context, listen: false);
+    final ambigramProvider =
+        Provider.of<AmbigramProvider>(context, listen: false);
     ambigramProvider.clearAmbigram();
     context.go('/');
   }
@@ -181,7 +186,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
               ),
             );
           }
-          
+
           return Column(
             children: [
               // Preview image
@@ -194,7 +199,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                   ),
                 ),
               ),
-              
+
               // Action buttons
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -214,7 +219,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                       ),
                     ],
                     const SizedBox(height: 24),
-                    
+
                     // Action buttons
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -239,7 +244,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // App promotion text
                     const Text(
                       AppStrings.sharePromotionText,

@@ -7,7 +7,7 @@ class AuthProvider extends ChangeNotifier {
 
   /// Whether the user is authenticated
   bool get isAuthenticated => _isAuthenticated;
-  
+
   /// The number of credits the user has
   int get credits => _credits;
 

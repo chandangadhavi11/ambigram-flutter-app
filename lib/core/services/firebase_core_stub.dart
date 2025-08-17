@@ -8,13 +8,16 @@ import 'package:flutter/foundation.dart';
 class FirebaseOptions {
   /// API key
   final String apiKey;
+
   /// App ID
   final String appId;
+
   /// Project ID
   final String projectId;
+
   /// Messaging sender ID
   final String messagingSenderId;
-  
+
   /// Constructor
   const FirebaseOptions({
     required this.apiKey,
@@ -28,10 +31,10 @@ class FirebaseOptions {
 class FirebaseApp {
   /// App name
   final String _name;
-  
+
   /// Constructor
   FirebaseApp(this._name);
-  
+
   /// App name
   String get name => _name;
 }
@@ -39,15 +42,16 @@ class FirebaseApp {
 /// Stub implementation for Firebase
 class Firebase {
   static FirebaseApp? _app;
-  
+
   /// Default app
   static FirebaseApp get app {
     if (_app == null) {
-      throw Exception("Firebase has not been initialized. Call Firebase.initializeApp() first.");
+      throw Exception(
+          "Firebase has not been initialized. Call Firebase.initializeApp() first.");
     }
     return _app!;
   }
-  
+
   /// Initialize the Firebase app - stub implementation
   static Future<FirebaseApp> initializeApp({
     FirebaseOptions? options,

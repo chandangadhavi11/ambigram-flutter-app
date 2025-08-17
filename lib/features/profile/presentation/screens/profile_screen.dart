@@ -40,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   // Profile header
                   _buildProfileHeader(context, authNotifier),
                   const SizedBox(height: 24),
-                  
+
                   // Menu items
                   ProfileMenuItem(
                     icon: Icons.star_outline,
@@ -55,7 +55,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text('You have ${authNotifier.credits} credits remaining.'),
+                              Text(
+                                  'You have ${authNotifier.credits} credits remaining.'),
                               const SizedBox(height: 16),
                               const Text(
                                 'Credits are used to generate ambigrams. '
@@ -81,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       );
                     },
                   ),
-                  
+
                   ProfileMenuItem(
                     icon: Icons.settings_outlined,
                     title: 'Settings',
@@ -91,7 +92,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       context.go('/settings');
                     },
                   ),
-                  
+
                   ProfileMenuItem(
                     icon: Icons.info_outline,
                     title: 'About',
@@ -132,51 +133,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       );
                     },
                   ),
-                  
-                  // Logout button
-                  if (authNotifier.isLoggedIn) ...[
-                    ProfileMenuItem(
-                      icon: Icons.logout,
-                      title: 'Logout',
-                      subtitle: 'Sign out of your account',
-                      onTap: () {
-                        // Show confirmation dialog
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: const Text('Logout'),
-                            content: const Text('Are you sure you want to log out?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.of(context).pop(),
-                                child: const Text('Cancel'),
-                              ),
-                              ElevatedButton(
-                                onPressed: () async {
-                                  Navigator.of(context).pop();
-                                  await authNotifier.logout();
-                                  if (context.mounted) {
-                                    context.go('/auth');
-                                  }
-                                },
-                                child: const Text('Logout'),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ] else ...[
-                    // Login button for guest users
-                    ProfileMenuItem(
-                      icon: Icons.login,
-                      title: 'Login',
-                      subtitle: 'Sign in to save your ambigrams',
-                      onTap: () {
-                        context.go('/auth');
-                      },
-                    ),
-                  ],
+
+                  // Authentication buttons removed
                 ],
               ),
             ),
@@ -210,55 +168,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         const SizedBox(height: 16),
-        
-        // User name
+
+        // User name - always show guest
         Text(
-          authNotifier.isLoggedIn ? 'User Name' : AppStrings.guest,
+          AppStrings.guest,
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
         ),
-        
-        // User email
-        if (authNotifier.isLoggedIn) ...[
-          const SizedBox(height: 4),
-          Text(
-            'user@example.com',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey[600],
-                ),
+
+        // Credits badge - always show credits
+        const SizedBox(height: 16),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(20),
           ),
-        ],
-        
-        // Credits badge
-        if (authNotifier.isLoggedIn) ...[
-          const SizedBox(height: 16),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
-              color: AppColors.primary,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Icons.star,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.star,
+                color: Colors.white,
+                size: 20,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                '${authNotifier.credits} Credits',
+                style: const TextStyle(
                   color: Colors.white,
-                  size: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(width: 8),
-                Text(
-                  '${authNotifier.credits} Credits',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
+        ),
       ],
     );
   }

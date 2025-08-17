@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CreditDisplay extends StatelessWidget {
   /// Number of credits to display
   final int credits;
-  
+
   /// Default constructor
   const CreditDisplay({
     super.key,

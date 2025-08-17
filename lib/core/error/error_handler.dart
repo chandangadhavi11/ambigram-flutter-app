@@ -13,32 +13,32 @@ import 'package:flutter/material.dart';
 class ErrorHandler {
   /// The singleton instance of [ErrorHandler]
   static final ErrorHandler _instance = ErrorHandler._internal();
-  
+
   /// Private constructor
   ErrorHandler._internal();
-  
+
   /// Factory constructor that returns the singleton instance
   factory ErrorHandler() => _instance;
-  
+
   /// Firebase Crashlytics instance
   late final FirebaseCrashlytics _crashlytics;
-  
+
   /// Initialize error handling for the app
   Future<void> initialize(FirebaseCrashlytics crashlytics) async {
     _crashlytics = crashlytics;
-    
+
     // Enable Crashlytics data collection in release mode only
     await _crashlytics.setCrashlyticsCollectionEnabled(!kDebugMode);
-    
+
     // Pass all uncaught errors from the framework to Crashlytics
     FlutterError.onError = _handleFlutterError;
-    
+
     // Catch errors outside of Flutter context
     PlatformDispatcher.instance.onError = (error, stack) {
       _handleError(error, stack);
       return true;
     };
-    
+
     // Catch errors in Dart isolates
     Isolate.current.addErrorListener(RawReceivePort((pair) {
       final List<dynamic> errorAndStacktrace = pair;
@@ -47,20 +47,22 @@ class ErrorHandler {
       _handleError(error, stackTrace);
     }).sendPort);
   }
-  
+
   /// Handle Flutter framework errors
   void _handleFlutterError(FlutterErrorDetails details) {
-    _handleError(details.exception, details.stack ?? StackTrace.current, reason: details.context?.toString());
+    _handleError(details.exception, details.stack ?? StackTrace.current,
+        reason: details.context?.toString());
   }
-  
+
   /// Handle general errors
-  Future<void> _handleError(dynamic exception, StackTrace? stack, {String? reason}) async {
+  Future<void> _handleError(dynamic exception, StackTrace? stack,
+      {String? reason}) async {
     // Log the error locally
     debugPrint('ERROR: $exception');
     if (stack != null) {
       debugPrint('STACK TRACE: $stack');
     }
-    
+
     // Only report to Crashlytics in non-debug mode
     if (!kDebugMode) {
       await _crashlytics.recordError(
@@ -71,7 +73,7 @@ class ErrorHandler {
       );
     }
   }
-  
+
   /// Log a non-fatal error to Crashlytics
   Future<void> logError(dynamic exception, [StackTrace? stackTrace]) async {
     await _crashlytics.recordError(
@@ -80,17 +82,17 @@ class ErrorHandler {
       fatal: false,
     );
   }
-  
+
   /// Set a custom key/value pair for Crashlytics reports
   Future<void> setCustomKey(String key, dynamic value) async {
     await _crashlytics.setCustomKey(key, value);
   }
-  
+
   /// Log a message to Crashlytics
   Future<void> log(String message) async {
     await _crashlytics.log(message);
   }
-  
+
   /// Set user identifier for Crashlytics reports
   Future<void> setUserIdentifier(String identifier) async {
     await _crashlytics.setUserIdentifier(identifier);

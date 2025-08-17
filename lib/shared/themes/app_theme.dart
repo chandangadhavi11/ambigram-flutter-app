@@ -10,7 +10,7 @@ import 'text_styles.dart';
 class AppTheme {
   /// Private constructor to prevent instantiation
   const AppTheme._();
-  
+
   /// Gets the light theme for the application
   static ThemeData get lightTheme {
     return ThemeData(
@@ -52,14 +52,15 @@ class AppTheme {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
       progressIndicatorTheme: const ProgressIndicatorThemeData(
         color: AppColors.primary,
       ),
     );
   }
-  
+
   /// Gets the dark theme for the application
   static ThemeData get darkTheme {
     return ThemeData(
@@ -101,7 +102,8 @@ class AppTheme {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: Colors.purple.shade200,

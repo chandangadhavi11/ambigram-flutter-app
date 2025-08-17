@@ -2,7 +2,7 @@ name: ambigram
 description: "An ambigram generator app that allows users to create, preview, download, share, and save ambigrams."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,35 +34,35 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  
+
   # Routing
   go_router: ^12.0.0
-  
+
   # State Management
   provider: ^6.0.5
-  
+
   # Firebase - temporarily disabled
   # firebase_core: ^2.16.0
   # firebase_crashlytics: ^3.4.0
   # firebase_remote_config: ^4.3.0
   # firebase_analytics: ^10.5.0
-  
+
   # Ads - temporarily disabled
   # google_mobile_ads: 3.0.0
-  
+
   # Network
   http: ^1.1.0
   connectivity_plus: ^5.0.0
-  
+
   # Persistence
   shared_preferences: ^2.2.1
-  
+
   # UI/UX
   flutter_svg: ^2.0.7
   screenshot: ^2.1.0
   share_plus: ^7.1.0
   path_provider: ^2.1.1
-  
+
   # Notifications
   flutter_local_notifications: ^16.1.0
   timezone: ^0.9.2
@@ -72,10 +72,10 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-    
+
   # Linting
   flutter_lints: ^5.0.0
-  
+
   # Testing
   mocktail: ^1.0.0
   http_mock_adapter: ^0.6.1
@@ -86,7 +86,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

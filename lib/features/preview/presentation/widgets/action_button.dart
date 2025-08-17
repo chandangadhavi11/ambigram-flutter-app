@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 class ActionButton extends StatelessWidget {
   /// Icon to display
   final IconData icon;
-  
+
   /// Text label for the button
   final String label;
-  
+
   /// Callback when the button is pressed
   final VoidCallback? onPressed;
-  
+
   /// Whether the button is in a loading state
   final bool isLoading;
-  
+
   /// Default constructor
   const ActionButton({
     super.key,

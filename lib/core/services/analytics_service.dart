@@ -8,15 +8,15 @@ import 'firebase_analytics_stub.dart';
 class AnalyticsService {
   /// Firebase Analytics instance
   static final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
-  
+
   /// Private constructor to prevent instantiation
   AnalyticsService._();
-  
+
   /// Log when the app is opened
   static Future<void> logAppOpen() async {
     await _analytics.logAppOpen();
   }
-  
+
   /// Log a custom event
   static Future<void> logEvent({
     required String name,
@@ -27,7 +27,7 @@ class AnalyticsService {
       parameters: parameters,
     );
   }
-  
+
   /// Log a screen view event
   static Future<void> logScreenView({
     required String screenName,
@@ -41,7 +41,7 @@ class AnalyticsService {
       },
     );
   }
-  
+
   /// Log when a user creates an ambigram
   static Future<void> logAmbigramGenerated({
     required String primaryWord,
@@ -59,10 +59,10 @@ class AnalyticsService {
       },
     );
   }
-  
+
   /// Log when a user downloads or shares an ambigram
   static Future<void> logAmbigramShared({
-    required String action,  // 'download', 'save', or 'share'
+    required String action, // 'download', 'save', or 'share'
     required String primaryWord,
     String? secondaryWord,
     required String styleId,
@@ -77,10 +77,10 @@ class AnalyticsService {
       },
     );
   }
-  
+
   /// Log when a user earns credits
   static Future<void> logCreditsEarned({
-    required String source,  // 'ad_reward', 'purchase', etc.
+    required String source, // 'ad_reward', 'purchase', etc.
     required int amount,
   }) async {
     await logEvent(
@@ -91,10 +91,10 @@ class AnalyticsService {
       },
     );
   }
-  
+
   /// Log when a user spends credits
   static Future<void> logCreditsSpent({
-    required String action,  // 'generate_ambigram', etc.
+    required String action, // 'generate_ambigram', etc.
     required int amount,
   }) async {
     await logEvent(
@@ -105,7 +105,7 @@ class AnalyticsService {
       },
     );
   }
-  
+
   /// Log when a user encounters an error
   static Future<void> logError({
     required String errorType,
@@ -121,10 +121,10 @@ class AnalyticsService {
       },
     );
   }
-  
+
   /// Log when a user views an ad
   static Future<void> logAdViewed({
-    required String adType,  // 'banner', 'interstitial', 'rewarded'
+    required String adType, // 'banner', 'interstitial', 'rewarded'
     String? adUnitId,
   }) async {
     await logEvent(
@@ -135,7 +135,7 @@ class AnalyticsService {
       },
     );
   }
-  
+
   /// Log when a forced update is shown to the user
   static Future<void> logForcedUpdateShown({
     required int currentBuild,
@@ -149,12 +149,12 @@ class AnalyticsService {
       },
     );
   }
-  
+
   /// Set the user ID for analytics
   static Future<void> setUserId(String userId) async {
     await _analytics.setUserId(id: userId);
   }
-  
+
   /// Set a user property
   static Future<void> setUserProperty({
     required String name,
